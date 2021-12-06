@@ -23,6 +23,14 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+        Button show_axolotl = (Button) findViewById(R.id.ShowButton);
+        show_axolotl.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent4 = new Intent(MainGame.this, Axolotl_images.class);
+                MainGame.this.startActivity(intent4);
+            }
+        });
+
         ImageView eggid = (ImageView) findViewById(R.id.eggid);
         final int[] counter = {0};
         Toast mToastText = Toast.makeText(this, "", Toast.LENGTH_SHORT);
@@ -31,6 +39,7 @@ public class MainGame extends AppCompatActivity {
             public void onClick(View v) {
                 counter[0] += 1;
                 int times_left= 50 - counter[0];
+                int happiness = counter[0]- 50;
                 if(counter[0]==50) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -39,6 +48,11 @@ public class MainGame extends AppCompatActivity {
                             eggid.setImageResource(R.drawable.axolotl_pink);
                         }
                     });
+                }
+                else if(counter[0]>=50) {
+                    mToastText.cancel();
+                    mToastText.setText("You have " + happiness + " happiness! ");
+                    mToastText.show();
                 }
                 else {
                     mToastText.cancel();

@@ -5,4 +5,6 @@
     <string name="fact">Axolotls are cute</string>
     <string name="buttList">List</string>
     <string name="buttEvolve">Evolve</string>
+    <string name="load">Load images</string>
+    <string name="buttShow">Show</string>
 </resources>

@@ -16,6 +16,13 @@
             android:gravity="start"
             android:text="@string/buttList" />
 
+        <Button
+            android:id="@+id/ShowButton"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:gravity="start"
+            android:text="@string/buttShow" />
+
         <ImageView
             android:id="@+id/eggid"
             android:layout_width="250dp"
