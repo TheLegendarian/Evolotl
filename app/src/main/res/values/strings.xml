@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Evolotl</string>
+    <string name="title">Evolotl</string>
+    <string name="buttStart">Begin</string>
+    <string name="fact">Axolotls are cute</string>
+    <string name="buttList">List</string>
+</resources>
