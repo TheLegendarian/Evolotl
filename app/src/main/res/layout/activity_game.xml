@@ -5,12 +5,9 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainGame">
-
     <LinearLayout
-        android:id="@+id/accueilid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="start"
         android:orientation="vertical">
         <Button
             android:id="@+id/ListButton"
@@ -18,17 +15,28 @@
             android:layout_height="70dp"
             android:gravity="start"
             android:text="@string/buttList" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+
         <ImageView
             android:id="@+id/eggid"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/egg_test" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/EvolveButton"
+                android:layout_width="170dp"
+                android:layout_height="70dp"
+                android:text="@string/buttEvolve"
+                android:textAlignment="center" />
+        </LinearLayout>
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

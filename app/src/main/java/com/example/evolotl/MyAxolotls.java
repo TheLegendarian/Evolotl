@@ -46,7 +46,6 @@ public class MyAxolotls extends AppCompatActivity {
         //builder.setMessage(sb.toString());
         //builder.show();
 
-        //mydb.readData();
         mydb.printData(tableau);
         mydb.close();
         list.setAdapter(tableau);

@@ -11,7 +11,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
@@ -87,10 +91,18 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         db.close();
     }
     @SuppressLint("Range")
+    private static class ViewHolder {
+        TextView col_1;
+        TextView col_2;
+        TextView col_3;
+    }
+
+    @SuppressLint("Range")
     public void printData(ArrayAdapter<String> tableau) { //TODO faire tableau a plusieurs colonnes
         String select = new String("SELECT * from " + DATABASE_TABLE_NAME);
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(select, null);
+
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
