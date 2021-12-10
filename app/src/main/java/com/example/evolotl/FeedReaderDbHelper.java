@@ -91,7 +91,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         db.close();
     }
     @SuppressLint("Range")
-    private static class ViewHolder {
+    private static class
+    ViewHolder {
         TextView col_1;
         TextView col_2;
         TextView col_3;
@@ -113,4 +114,21 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    @SuppressLint("Range")
+    public String printName(int nb) {
+        String select = new String("SELECT * from " + DATABASE_TABLE_NAME + " WHERE " + PKEY + "=" + nb);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(select, null);
+        cursor.moveToFirst();
+        return cursor.getString(cursor.getColumnIndex(COL1));
+    }
+
+    @SuppressLint("Range")
+    public Integer printLevel(int nb) {
+        String select = new String("SELECT * from " + DATABASE_TABLE_NAME + " WHERE " + PKEY + "=" + nb);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(select, null);
+        cursor.moveToFirst();
+        return cursor.getInt(cursor.getColumnIndex(COL3));
+    }
 }

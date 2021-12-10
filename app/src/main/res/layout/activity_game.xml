@@ -22,13 +22,19 @@
             android:layout_height="70dp"
             android:gravity="start"
             android:text="@string/buttShow" />
-
+        <TextView
+            android:id="@+id/a_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="50dp"
+            android:text="@string/ax_name"/>
         <ImageView
             android:id="@+id/eggid"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/egg_test" />
+            app:srcCompat="@drawable/axolotl_pink" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
