@@ -23,20 +23,7 @@ public class MyAxolotls extends AppCompatActivity {
 
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
 
-        boolean is_inserted = mydb.insertData("Axolotl1", "Blue", "4", "axolotl_blue");
-        if(is_inserted==true) {
-            Toast.makeText(MyAxolotls.this, "Axolotl Adopted", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(MyAxolotls.this, "Axolotl Fled", Toast.LENGTH_LONG).show();
-        }
-        boolean is_inserted2 = mydb.insertData("Axolotl", "Pink", "1", "axolotl_pink");
-        if(is_inserted2==true) {
-            Toast.makeText(MyAxolotls.this, "Axolotl Adopted", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(MyAxolotls.this, "Axolotl Fled", Toast.LENGTH_LONG).show();
-        }
+        
         //StringBuffer sb =
 
         mydb.readData();

@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 8;
     private static final String DATABASE_FILE_NAME = "Mydatabase";
     private static final String DATABASE_TABLE_NAME = "mydatabase";
     private static final String PKEY = "ID";
@@ -38,7 +38,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                 COL1 + " TEXT," +
                 COL2 + " TEXT," +
                 COL3 + " INTEGER," +
-                COLIMG + "TEXT);";
+                COLIMG + " TEXT);";
         db.execSQL(DATABASE_TABLE_CREATE);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
