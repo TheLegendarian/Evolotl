@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
@@ -19,13 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 6;
     private static final String DATABASE_FILE_NAME = "Mydatabase";
     private static final String DATABASE_TABLE_NAME = "mydatabase";
     private static final String PKEY = "ID";
     private static final String COL1 = "NAME";
     private static final String COL2 = "COLOR";
     private static final String COL3 = "LEVEL";
+    private static final String COLIMG = "IMAGE_NAME";
 
     public FeedReaderDbHelper(Context context) {
         super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION);
@@ -35,7 +37,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                 PKEY + " INTEGER PRIMARY KEY," +
                 COL1 + " TEXT," +
                 COL2 + " TEXT," +
-                COL3 + " INTEGER);";
+                COL3 + " INTEGER," +
+                COLIMG + "TEXT);";
         db.execSQL(DATABASE_TABLE_CREATE);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -47,13 +50,15 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-    public boolean insertData(String name, String color, String level) {
+    public boolean insertData(String name, String color, String level, String img_name) {
         Log.i("JFL"," Insert in database");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL1,name);
         values.put(COL2,color);
         values.put(COL3,level);
+        values.put(COLIMG,img_name);
+        Log.i("JFL", "Inserting values");
         long result = db.insert(DATABASE_TABLE_NAME,null, values);
         if(result == -1 ) {
             return false;
@@ -69,6 +74,12 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         db.execSQL(clearDBQuery);
     }
 
+    public void updateData(Integer lvl, Integer id_a) {
+        String strSQL = "UPDATE "+ DATABASE_TABLE_NAME+" SET " + COL3 +" = " + lvl+ " WHERE " + PKEY+ " = "+ id_a;
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL(strSQL);
+    }
+
     @SuppressLint("Range")
     public void readData() {
         Log.i("JFL", "Reading database...");
@@ -77,13 +88,9 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(select, null);
         Log.i("JFL", "Number of entries: " + cursor.getCount());
         if (cursor.getCount() > 0) {
-            //StringBuffer buffer = new StringBuffer();
             cursor.moveToFirst();
             do {
-                //buffer.append("Id :" + cursor.getString(0) + "\n");
-                //buffer.append("Name :" + cursor.getString(1) + "\n");
-                //buffer.append("Color :" + cursor.getString(2) + "\n");
-                //buffer.append("Level :" + cursor.getString(3) + "\n\n");
+
                 Log.i("JFL", "Reading: " + cursor.getString(cursor.getColumnIndex(COL1)));
                 Log.i("JFL", "Reading: " + cursor.getString(cursor.getColumnIndex(COL2)));
             } while (cursor.moveToNext());
@@ -96,6 +103,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         TextView col_1;
         TextView col_2;
         TextView col_3;
+        TextView col_img;
     }
 
     @SuppressLint("Range")
@@ -130,5 +138,14 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(select, null);
         cursor.moveToFirst();
         return cursor.getInt(cursor.getColumnIndex(COL3));
+    }
+
+    @SuppressLint("Range")
+    public String printImage(int nb) {
+        String select = new String("SELECT * from " + DATABASE_TABLE_NAME + " WHERE " + PKEY + "=" + nb);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(select, null);
+        cursor.moveToFirst();
+        return cursor.getString(cursor.getColumnIndex(COLIMG));
     }
 }

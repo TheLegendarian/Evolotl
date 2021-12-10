@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         TextView title = (TextView) findViewById(R.id.TitleText);
 
         Button startbutton = (Button) findViewById(R.id.StartButton);
@@ -42,8 +42,19 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
+        boolean is_inserted = mydb.insertData("George", "Blue", "0","axolotl_blue");
+        if(is_inserted==true) {
+            Toast.makeText(MainActivity.this, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Axolotl Fled", Toast.LENGTH_SHORT).show();
+        }
+
         startbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
                 Intent intent3 = new Intent(MainActivity.this, MainGame.class);
                 MainActivity.this.startActivity(intent3);
             }

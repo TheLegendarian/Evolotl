@@ -17,7 +17,6 @@ public class MainGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
 
 
         Button listbutton = (Button) findViewById(R.id.ListButton);
@@ -35,16 +34,23 @@ public class MainGame extends AppCompatActivity {
                 MainGame.this.startActivity(intent4);
             }
         });
+        //INITIALISATION LAYOUT
         TextView aname = (TextView) findViewById(R.id.a_name);
-
-        String name = mydb.printName(1);
-        Integer lvl = mydb.printLevel(1);
-        mydb.close();
-        aname.setText(name);
         ImageView eggid = (ImageView) findViewById(R.id.eggid);
         Button evolve_button = (Button) findViewById(R.id.EvolveButton);
+        Toast mToastText = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+
+        //INITIALISATION DATABASE
+        Integer id_a= 1;
+        FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
+        String name = mydb.printName(id_a);
+        final Integer[] lvl = {mydb.printLevel(id_a)};
+        String img_name = mydb.printImage(id_a);
+        mydb.close();
+        aname.setText(name);
+
         //Egg setup if level is 0
-        if(lvl==0) {
+        if(lvl[0] ==0) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -55,19 +61,21 @@ public class MainGame extends AppCompatActivity {
         }
 
         final int[] counter = {0};
-        Toast mToastText = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         evolve_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 counter[0] += 1;
                 int times_left= 50 - counter[0];
                 int happiness = counter[0];
-                if(lvl==0) {
+                //Niveau OEUF
+                if(lvl[0] ==0) {
                     if (counter[0] == 50) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 evolve_button.setText("Feed");
-                                eggid.setImageResource(R.drawable.axolotl_pink);
+                                eggid.setImageResource(getResources().getIdentifier(img_name, "drawable", getPackageName()));
+                                mydb.updateData(lvl[0] +1,id_a);
+                                lvl[0] = mydb.printLevel(id_a);
                                 counter[0] = 0;
                             }
                         });
@@ -77,6 +85,7 @@ public class MainGame extends AppCompatActivity {
                         mToastText.show();
                     }
                 }
+                //Niveau AXOLOTL
                 else {
                     mToastText.cancel();
                     mToastText.setText("You have " + happiness + " happiness! ");
