@@ -14,4 +14,5 @@
     <string name="TextView3">txtview3</string>
     <string name="buttBuy">Buy</string>
     <string name="happiness">0</string>
+    <string name="buttImList">Go to imlist</string>
 </resources>

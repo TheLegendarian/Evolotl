@@ -45,6 +45,15 @@
                 android:layout_height="70dp"
                 android:gravity="center"
                 android:text="@string/buttStart" />
+
+            <Button
+                android:id="@+id/ImListButton"
+                android:layout_width="130dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="@string/buttImList"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="654dp" />
         </LinearLayout>
 
 

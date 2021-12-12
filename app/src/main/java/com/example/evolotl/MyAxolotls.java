@@ -3,9 +3,12 @@ package com.example.evolotl;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.content.Context;
 import android.widget.Toast;
@@ -19,7 +22,9 @@ public class MyAxolotls extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_axolotl_list);
 
-        Log.i("JFL","oncrate started list");
+
+
+        Log.i("JFL","oncreate started list");
         ListView list = (ListView)findViewById(R.id.listView1);
 
 
@@ -29,5 +34,6 @@ public class MyAxolotls extends AppCompatActivity {
         AxolotlListAdapter adapter = new AxolotlListAdapter(this, R.layout.adapter_view_layout, axlist);
         mydb.close();
         list.setAdapter(adapter);
+
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView title = (TextView) findViewById(R.id.TitleText);
 
-        Button startbutton = (Button) findViewById(R.id.StartButton);
+
         // Searching axolotls https://axoltlapi.herokuapp.com/
         //String url = new String("https://axoltlapi.herokuapp.com/");
         //AsyncAxolotlJSONData task = new AsyncAxolotlJSONData(mact);
@@ -47,10 +48,20 @@ public class MainActivity extends AppCompatActivity {
         mydb.getWritableDatabase();
         final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
         gHappiness.setIdCurr(1);
+        Button startbutton = (Button) findViewById(R.id.StartButton);
         startbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 Intent intent3 = new Intent(MainActivity.this, MainGame.class);
+                MainActivity.this.startActivity(intent3);
+            }
+        });
+
+        Button imlistbutton = (Button) findViewById(R.id.ImListButton);
+        imlistbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i("JFL", "changing page");
+                Intent intent3 = new Intent(MainActivity.this, ListActivity.class);
                 MainActivity.this.startActivity(intent3);
             }
         });
