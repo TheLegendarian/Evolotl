@@ -9,11 +9,12 @@
     <TextView
         android:gravity="center"
         android:textAlignment="center"
-        android:text="Sam"
+        android:text="@string/TextView1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/textView1"
         android:layout_weight="66.6"/>
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,18 +24,24 @@
 
         <TextView
             android:gravity="center"
-            android:text="Brown"
+            android:text="@string/TextView2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/textView2"/>
 
         <TextView
             android:gravity="center"
-            android:text="Level 2"
+            android:text="@string/TextView3"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/textView3"
             android:layout_below="@+id/textView2"/>
-    </LinearLayout>
 
+    </LinearLayout>
+    <Button
+        android:id="@+id/BuyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/buttBuy" />
 </LinearLayout>

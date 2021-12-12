@@ -3,6 +3,7 @@ package com.example.evolotl;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -28,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         Button startbutton = (Button) findViewById(R.id.StartButton);
         // Searching axolotls https://axoltlapi.herokuapp.com/
-        String url = new String("https://axoltlapi.herokuapp.com/");
-        AsyncAxolotlJSONData task = new AsyncAxolotlJSONData(mact);
-        try {
+        //String url = new String("https://axoltlapi.herokuapp.com/");
+        //AsyncAxolotlJSONData task = new AsyncAxolotlJSONData(mact);
+        /*try {
             JSONObject result = task.execute(url).get();
             String fact = result.getString("facts");
             TextView afact = (TextView) findViewById(R.id.AxolotlFact);
@@ -41,19 +42,13 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
-        boolean is_inserted = mydb.insertData("George", "Blue", "0","axolotl_blue");
-        if(is_inserted==true) {
-            Toast.makeText(MainActivity.this, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(MainActivity.this, "Axolotl Fled", Toast.LENGTH_SHORT).show();
-        }
-
+        mydb.getWritableDatabase();
+        final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
+        gHappiness.setIdCurr(1);
         startbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
 
                 Intent intent3 = new Intent(MainActivity.this, MainGame.class);
                 MainActivity.this.startActivity(intent3);

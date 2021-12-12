@@ -8,4 +8,10 @@
     <string name="load">Load images</string>
     <string name="buttShow">Show</string>
     <string name="ax_name">Name</string>
+    <string name="buttRename">Rename this boi</string>
+    <string name="TextView1">txtview1</string>
+    <string name="TextView2">txtview2</string>
+    <string name="TextView3">txtview3</string>
+    <string name="buttBuy">Buy</string>
+    <string name="happiness">0</string>
 </resources>
