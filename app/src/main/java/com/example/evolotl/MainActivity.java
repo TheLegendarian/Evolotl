@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.TitleText);
 
 
-        // Searching axolotls https://axoltlapi.herokuapp.com/
-        //String url = new String("https://axoltlapi.herokuapp.com/");
-        //AsyncAxolotlJSONData task = new AsyncAxolotlJSONData(mact);
-        /*try {
+        //Searching axolotls https://axoltlapi.herokuapp.com/
+        String url = new String("https://axoltlapi.herokuapp.com/");
+        AsyncAxolotlJSONData task = new AsyncAxolotlJSONData(mact);
+        try {
             JSONObject result = task.execute(url).get();
             String fact = result.getString("facts");
             TextView afact = (TextView) findViewById(R.id.AxolotlFact);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
         mydb.getWritableDatabase();
         final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
@@ -57,13 +57,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button imlistbutton = (Button) findViewById(R.id.ImListButton);
-        imlistbutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.i("JFL", "changing page");
-                Intent intent3 = new Intent(MainActivity.this, ListActivity.class);
-                MainActivity.this.startActivity(intent3);
-            }
-        });
     }
 }

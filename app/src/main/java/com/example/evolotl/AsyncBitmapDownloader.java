@@ -4,11 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -56,7 +53,7 @@ public class AsyncBitmapDownloader extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap bitmap) {
-        ImageView image = (ImageView) myActivity.findViewById(R.id.axolotl);
-        image.setImageBitmap(bitmap);
+        /*ImageView image = (ImageView) myActivity.findViewById(R.id.axolotl);
+        image.setImageBitmap(bitmap);*/
     }
 }

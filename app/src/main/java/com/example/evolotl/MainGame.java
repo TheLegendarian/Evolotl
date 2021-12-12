@@ -30,11 +30,12 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
-        Button show_axolotl = (Button) findViewById(R.id.ShowButton);
-        show_axolotl.setOnClickListener(new View.OnClickListener() {
+        Button imlistbutton = (Button) findViewById(R.id.ShowButton);
+        imlistbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent4 = new Intent(MainGame.this, Axolotl_images.class);
-                MainGame.this.startActivity(intent4);
+                Log.i("JFL", "changing page");
+                Intent intent3 = new Intent(MainGame.this, ListActivity.class);
+                MainGame.this.startActivity(intent3);
             }
         });
 

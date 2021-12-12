@@ -23,10 +23,9 @@ import java.util.ArrayList;
 
 class AsyncAxolotlJSONDataForList extends AsyncTask<String, Void, ArrayList<String>> {
     private AppCompatActivity myActivity;
-    private MyAdapter adapter;
 
-    public AsyncAxolotlJSONDataForList(MyAdapter adapter, AppCompatActivity myActivity_) {
-        this.adapter = adapter;
+
+    public AsyncAxolotlJSONDataForList(AppCompatActivity myActivity_) {
         myActivity = myActivity_;
     }
 
@@ -63,9 +62,7 @@ class AsyncAxolotlJSONDataForList extends AsyncTask<String, Void, ArrayList<Stri
             for (int i = 0; i < a_s.size(); i++) {
                 String image_url = (String) a_s.get(i);
                 Log.i("JFL", "Adding to adapter url : " + image_url);
-                adapter.add(image_url);
             }
-            adapter.notifyDataSetChanged();
         }
 else
         {
