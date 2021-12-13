@@ -3,9 +3,11 @@ package com.example.evolotl;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView title = (TextView) findViewById(R.id.TitleText);
-
+        //INITIALISING PREFERENCES
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("currId", 1); // value to store
+        editor.commit();
 
         //Searching axolotls https://axoltlapi.herokuapp.com/
         String url = new String("https://axoltlapi.herokuapp.com/");
@@ -46,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         }
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
         mydb.getWritableDatabase();
-        final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
-        gHappiness.setIdCurr(1);
+        //final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
+        //gHappiness.setIdCurr(1);
         Button startbutton = (Button) findViewById(R.id.StartButton);
         startbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

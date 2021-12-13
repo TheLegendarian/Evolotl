@@ -3,8 +3,8 @@ package com.example.evolotl;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
     int mResource;
@@ -36,9 +35,12 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
 
 
         //INITIALISATION VARIABLES
-        final GlobalHappiness gHappiness = (GlobalHappiness) mContext.getApplicationContext();
-        final int[] happiness = {gHappiness.getHappiness()};
-        final int[] idCurr = {gHappiness.getIdCurr()};
+        //final GlobalHappiness gHappiness = (GlobalHappiness) mContext.getApplicationContext();
+        //final int[] happiness = {gHappiness.getHappiness()};
+        //final int[] idCurr = {gHappiness.getIdCurr()};
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        final int[] happiness = {preferences.getInt("happiness", 0)};
+        final int idCurr = preferences.getInt("idCurr", 0);
         Toast mToastText = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
         //INITIALISATIONS VARIABLES AXOLOTL
         Integer id =getItem(position).getId();
@@ -68,7 +70,9 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
                 if(obtained == 0) {
                     if(happiness[0] >= price) {
                         happiness[0] = happiness[0] - price;
-                        gHappiness.setHappiness(happiness[0]);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt("happiness", happiness[0]); // value to store
+                        editor.commit();
                         mydb.updateObtained(id);
                         mToastText.cancel();
                         mToastText.setText("Axolotl Bought! ");
@@ -83,7 +87,9 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
                     }
                 }
                 else {
-                    gHappiness.setIdCurr(id);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("idCurr", id); // value to store
+                    editor.commit();
                     mToastText.cancel();
                     mToastText.setText("Axolotl Selected ");
                     mToastText.show();

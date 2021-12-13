@@ -3,9 +3,11 @@ package com.example.evolotl;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,8 +51,9 @@ public class MainGame extends AppCompatActivity {
         Toast mToastText = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
         //INITIALISATION DATABASE
-        final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext();
-        Integer id_a= gHappiness.getIdCurr();
+        //final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext(); gHappiness.getIdCurr();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Integer id_a= preferences.getInt("currId",0);
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
         String name = mydb.printName(id_a);
         final Integer[] lvl = {mydb.printLevel(id_a)};
@@ -122,9 +125,13 @@ public class MainGame extends AppCompatActivity {
                 }
                 //Niveau AXOLOTL
                 else {
-                    int happiness = gHappiness.getHappiness();
+                    //int happiness = gHappiness.getHappiness();
+                    int happiness = preferences.getInt("happiness", 0);
                     happiness+= id_a;
-                    gHappiness.setHappiness(happiness);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("happiness", happiness); // value to store
+                    editor.apply();
+                    //gHappiness.setHappiness(happiness);
                     hap_display.setText(" " + happiness + " ");
                     mToastText.cancel();
                     mToastText.setText("You have " + happiness + " happiness! ");
