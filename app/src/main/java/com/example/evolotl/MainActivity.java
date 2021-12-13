@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //INITIALISING PREFERENCES
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("currId", 1); // value to store
+        editor.putInt("idCurr", 1); // value to store
         editor.commit();
 
         //Searching axolotls https://axoltlapi.herokuapp.com/

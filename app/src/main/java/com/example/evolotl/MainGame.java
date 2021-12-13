@@ -53,7 +53,7 @@ public class MainGame extends AppCompatActivity {
         //INITIALISATION DATABASE
         //final GlobalHappiness gHappiness = (GlobalHappiness) getApplicationContext(); gHappiness.getIdCurr();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Integer id_a= preferences.getInt("currId",0);
+        Integer id_a= preferences.getInt("idCurr",0);
         FeedReaderDbHelper mydb = new FeedReaderDbHelper(this);
         String name = mydb.printName(id_a);
         final Integer[] lvl = {mydb.printLevel(id_a)};

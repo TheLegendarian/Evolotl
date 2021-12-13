@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
         //final int[] idCurr = {gHappiness.getIdCurr()};
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         final int[] happiness = {preferences.getInt("happiness", 0)};
-        final int idCurr = preferences.getInt("idCurr", 0);
         Toast mToastText = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
         //INITIALISATIONS VARIABLES AXOLOTL
         Integer id =getItem(position).getId();
@@ -89,7 +89,10 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
                 else {
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putInt("idCurr", id); // value to store
+                    Log.i("JFL", "storing current id" + id);
                     editor.commit();
+                    Log.i("JFL", "storing current id" + preferences.getInt("idCurr", 0));
+
                     mToastText.cancel();
                     mToastText.setText("Axolotl Selected ");
                     mToastText.show();
