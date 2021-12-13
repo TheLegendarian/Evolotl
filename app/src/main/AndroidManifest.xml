@@ -16,9 +16,6 @@
             android:name=".ListActivity"
             android:exported="true" />
         <activity
-            android:name=".Axolotl_images"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -100,10 +100,10 @@ public class MainGame extends AppCompatActivity {
         evolve_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 counter[0] += 1;
-                int times_left= 50 - counter[0];
+                int times_left= 20 - counter[0];
                 //Niveau OEUF
                 if(lvl[0] ==0) {
-                    if (counter[0] == 50) {
+                    if (counter[0] == 20) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

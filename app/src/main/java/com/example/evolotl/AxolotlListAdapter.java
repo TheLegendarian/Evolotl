@@ -73,6 +73,8 @@ public class AxolotlListAdapter  extends ArrayAdapter<Axolotl> {
                         mToastText.cancel();
                         mToastText.setText("Axolotl Bought! ");
                         mToastText.show();
+                        Intent intent3 = new Intent(mContext, MyAxolotls.class);
+                        mContext.startActivity(intent3);
                     }
                     else {
                         mToastText.cancel();

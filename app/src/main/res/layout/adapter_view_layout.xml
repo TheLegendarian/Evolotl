@@ -12,6 +12,7 @@
         android:text="@string/TextView1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:textColor="@color/white"
         android:id="@+id/textView1"
         android:layout_weight="66.6"/>
 
@@ -27,6 +28,7 @@
             android:text="@string/TextView2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:textColor="@color/white"
             android:id="@+id/textView2"/>
 
         <TextView
@@ -35,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/textView3"
+            android:textColor="@color/white"
             android:layout_below="@+id/textView2"/>
 
     </LinearLayout>

@@ -26,7 +26,7 @@ import java.util.zip.Inflater;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 12;
+    public static final int DATABASE_VERSION = 13;
     private static final String DATABASE_FILE_NAME = "Mydatabase";
     private static final String DATABASE_TABLE_NAME = "mydatabase";
     private static final String PKEY = "ID";
@@ -62,7 +62,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
             Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
         }
 
-        is_inserted = mydb.insertData(db,"White Axolotl", "white", "0","axolotl_pink",100,0);
+        is_inserted = mydb.insertData(db,"White Axolotl", "white", "0","axolotl_white",100,0);
         if(is_inserted==true) {
             Toast.makeText(mContext, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
         }
@@ -70,14 +70,34 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
             Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
         }
 
-        is_inserted = mydb.insertData(db,"Blue Axolotl", "Blue", "0","axolotl_blue",200,0);
+        is_inserted = mydb.insertData(db,"Brown Axolotl", "Brown", "0","axolotl_brown",200,0);
         if(is_inserted==true) {
             Toast.makeText(mContext, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
         }
-
+        is_inserted = mydb.insertData(db,"Blue Axolotl", "Blue", "0","axolotl_blue",400,0);
+        if(is_inserted==true) {
+            Toast.makeText(mContext, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
+        }
+        is_inserted = mydb.insertData(db,"Gold Axolotl", "Golden", "0","axolotl_gold",1000,0);
+        if(is_inserted==true) {
+            Toast.makeText(mContext, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
+        }
+        is_inserted = mydb.insertData(db,"Legendary Rainbow Axolotl", "Rainbow", "0","axolotl_rainbow",10000,0);
+        if(is_inserted==true) {
+            Toast.makeText(mContext, "Axolotl Adopted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "Axolotl Fled", Toast.LENGTH_SHORT).show();
+        }
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
